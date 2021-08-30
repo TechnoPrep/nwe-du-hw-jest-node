@@ -1,7 +1,11 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-employees = [];
+const Manager = require('Manager');
+const Engineer = require('Engineer');
+const Intern = require('Intern');
+
+let team = [];
 
 function empType(){
   inquirer.prompt([
@@ -47,25 +51,56 @@ function questions(type){
         {
           type: "input",
           message: `What is the team ${type}'s GitHub Username?`,
-          name: "number",
+          name: "gitHub",
           when: type === 'Engineer'
         },
         {
           type: "input",
           message: `What is the team ${type}'s school name?`,
-          name: "number",
+          name: "school",
           when: type === 'Intern'
         },
       ])
 
       .then((data) => {
-        // saveData(data);
+        buildTeam(type, data);
         empType();
       })
 
     } else {
         //Create Files
         console.log('Create HTML Data');
+    }
+}
+
+const buildTeam = (type, data) => {
+    if(type === 'Manager') {
+        // let resType = 'number';
+        let addEmp = new Manager (
+            data.name,
+            data.id,
+            data.email,
+            data.number
+        )
+        team.push(addEmp);
+    } else if(type === 'Engineer') {
+        // let resType = 'gitHub';
+        let addEmp = new Engineer (
+            data.name,
+            data.id,
+            data.email,
+            data.gitHub
+        )
+        team.push(addEmp);
+    } else {
+        // let resType = 'school'
+        let addEmp = new Intern (
+            data.name,
+            data.id,
+            data.email,
+            data.school
+        )
+        team.push(addEmp);
     }
 }
 
