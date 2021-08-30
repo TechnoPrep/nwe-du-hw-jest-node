@@ -1,0 +1,28 @@
+{
+  "name": "nwe-du-hw-jest-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechnoPrep/nwe-du-hw-jest-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TechnoPrep/nwe-du-hw-jest-node/issues"
+  },
+  "homepage": "https://github.com/TechnoPrep/nwe-du-hw-jest-node#readme",
+  "dependencies": {
+    "inquirer": "^8.1.2",
+    "jest": "^27.1.0"
+  }
+}
