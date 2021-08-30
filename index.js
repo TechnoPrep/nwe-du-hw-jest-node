@@ -1,9 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-function saveData(data) {
-    fs.appendFileSync('./Output/employee.json', data, 'utf-8');
-}
+employees = [];
 
 function empType(){
   inquirer.prompt([
@@ -22,7 +20,7 @@ function empType(){
 }
 
 function questions(type){
-    
+
     if(type !== 'I am done entering new Employees'){
           inquirer.prompt([
         {
@@ -44,19 +42,19 @@ function questions(type){
           type: "input",
           message: `What is the team ${type}'s office number?`,
           name: "number",
-          when: (type) => type === 'Manager'
+          when: type === 'Manager'
         },
         {
           type: "input",
-          message: `What is the team ${type}'s office number?`,
+          message: `What is the team ${type}'s GitHub Username?`,
           name: "number",
-          when: (type) => type === 'Manager'
+          when: type === 'Engineer'
         },
         {
           type: "input",
-          message: `What is the team ${type}'s office number?`,
+          message: `What is the team ${type}'s school name?`,
           name: "number",
-          when: (type) => type === 'Manager'
+          when: type === 'Intern'
         },
       ])
 
