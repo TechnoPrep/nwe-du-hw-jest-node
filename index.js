@@ -7,7 +7,7 @@ const Intern = require('./lib/Intern');
 
 let team = [];
 
-function empType(){
+function empType () {
   inquirer.prompt([
     {
       type: 'list',
@@ -23,7 +23,7 @@ function empType(){
   })
 }
 
-function questions(type){
+async function questions (type) {
 
     if(type !== 'I am done entering new Employees'){
           inquirer.prompt([
@@ -106,7 +106,14 @@ const buildTeam = (type, data) => {
     }
 }
 
-questions('Manager');
+function createHTML () {
+
+}
+
+questions('Manager').then((data) => {  
+    createHTML();
+});
+
 
 
 
