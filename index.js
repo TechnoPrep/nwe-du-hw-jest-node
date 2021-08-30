@@ -1,9 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-const Manager = require('Manager');
-const Engineer = require('Engineer');
-const Intern = require('Intern');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 let team = [];
 
@@ -30,7 +30,7 @@ function questions(type){
         {
           type: "input",
           message: `What is the team ${type}'s name?`,
-          name: "name",
+          name: "fullName",
         },
         {
             type: "input",
@@ -63,7 +63,9 @@ function questions(type){
       ])
 
       .then((data) => {
+        console.log(data);
         buildTeam(type, data);
+        console.log(team);
         empType();
       })
 
@@ -77,7 +79,7 @@ const buildTeam = (type, data) => {
     if(type === 'Manager') {
         // let resType = 'number';
         let addEmp = new Manager (
-            data.name,
+            data.fullName,
             data.id,
             data.email,
             data.number
@@ -86,7 +88,7 @@ const buildTeam = (type, data) => {
     } else if(type === 'Engineer') {
         // let resType = 'gitHub';
         let addEmp = new Engineer (
-            data.name,
+            data.fullName,
             data.id,
             data.email,
             data.gitHub
@@ -95,7 +97,7 @@ const buildTeam = (type, data) => {
     } else {
         // let resType = 'school'
         let addEmp = new Intern (
-            data.name,
+            data.fullName,
             data.id,
             data.email,
             data.school
