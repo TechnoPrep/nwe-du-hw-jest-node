@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const createHTML = require('./src/createHTML.js');
 
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -29,17 +30,17 @@ async function questions (type) {
           inquirer.prompt([
         {
           type: "input",
-          message: `What is the team ${type}'s name?`,
+          message: `What is the team ${type}'s Full Name?`,
           name: "fullName",
         },
         {
             type: "input",
-            message: `What is the team ${type}'s name?`,
+            message: `What is the team ${type}'s Id?`,
             name: "id",
         },
         {
           type: "input",
-          message: `What is the team ${type}'s name?`,
+          message: `What is the team ${type}'s email?`,
           name: "email",
         },
         {
@@ -63,15 +64,15 @@ async function questions (type) {
       ])
 
       .then((data) => {
-        console.log(data);
         buildTeam(type, data);
-        console.log(team);
         empType();
       })
 
     } else {
         //Create Files
         console.log('Create HTML Data');
+        console.log(team);
+        makeHTML(team);
     }
 }
 
@@ -106,13 +107,11 @@ const buildTeam = (type, data) => {
     }
 }
 
-function createHTML () {
-
+function makeHTML(data){
+    fs.writeFileSync('./dist/index.html', createHTML(data),'utf-8');
 }
 
-questions('Manager').then((data) => {  
-    createHTML();
-});
+questions('Manager');
 
 
 
