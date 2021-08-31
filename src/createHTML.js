@@ -96,22 +96,32 @@ const createInt = (data) => {
 
 const formatNumber = (number) => {
 
-  //RegEx to remove all non-numeric characters
+  // RegEx to remove all non-numeric characters
   // split into an array
   let numArr = number.replace(/\D/g,'').split('');
   
-  //Strip first number if it is a 1
+  // Strip first number if it is a 1
   if(numArr[0] === '1'){
     numArr.shift();
   }
-  
-  //Format numbers to be in the example format
-  //Exampe Format '(555) 555-5555'
-  numArr.splice(0,0,'(');
-  numArr.splice(4,0,') ');
-  numArr.splice(8,0,'-');
 
-  //Convert back to a string
+  len = numArr.length;
+  
+  // Format numbers to be in the example format
+  if(numArr.length === 10){
+    // Exampe Format if 10 digit number '(555) 555-5555'
+    numArr.splice(0,0,'(');
+    numArr.splice(4,0,') ');
+    numArr.splice(8,0,'-');
+  } else if(numArr.length === 7){
+    // Exampe Format if 7 digit number '555-5555'
+    numArr.splice(3,0,'-');
+  } else {
+    // Else return the original Input as the Number is bad
+    return number;
+  }
+
+  // Convert back to a string
   clearNum = numArr.join('');
 
   return clearNum;
