@@ -70,8 +70,6 @@ async function questions (type) {
 
     } else {
         //Create Files
-        console.log('Create HTML Data');
-        console.log(team);
         makeHTML(team);
     }
 }
