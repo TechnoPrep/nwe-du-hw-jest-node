@@ -1,0 +1,31 @@
+
+.card-custom{
+    box-shadow: 2px 2px;
+    padding: 0;
+    margin: 10px;
+}
+
+.border-custom{
+    border-radius: 10px;
+}
+
+.top-border-custom{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+
+}
+
+.bottom-border-custom{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
+
+.bg-gray-custom{
+    background-color: lightgray;
+}
+
+.bg-red-custom{
+    background-color: red;
+    color: white;
+}
