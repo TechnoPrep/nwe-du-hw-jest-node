@@ -1,12 +1,22 @@
-
 .card-custom{
-    box-shadow: 2px 2px;
+    box-shadow: 2px 2px darkgrey;
     padding: 0;
     margin: 10px;
 }
 
 .border-custom{
     border-radius: 10px;
+}
+
+.float-left{
+    float: left;
+    padding-right: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.margin-reset{
+    margin: 0px;
 }
 
 .top-border-custom{
@@ -27,5 +37,11 @@
 
 .bg-red-custom{
     background-color: red;
+    color: white;
+}
+
+.fa-glasses::before,
+.fa-user-graduate::before,
+.fa-coffee::before {
     color: white;
 }
