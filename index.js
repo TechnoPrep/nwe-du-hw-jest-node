@@ -8,7 +8,7 @@ const Intern = require('./lib/Intern');
 
 let team = [];
 
-function empType () {
+const empType = () => {
   inquirer.prompt([
     {
       type: 'list',
@@ -24,7 +24,7 @@ function empType () {
   })
 }
 
-async function questions (type) {
+const questions = async (type) => {
 
     if(type !== 'I am done entering new Employees'){
           inquirer.prompt([
@@ -105,7 +105,7 @@ const buildTeam = (type, data) => {
     }
 }
 
-function makeHTML(data){
+const makeHTML = (data) => {
     fs.writeFileSync('./dist/index.html', createHTML(data),'utf-8');
 }
 
