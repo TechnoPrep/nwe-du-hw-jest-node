@@ -31,10 +31,13 @@ const createMgmt = (data) => {
   let cleanNum = formatNumber(number);
 
   return `
-  <div class="card card-custom border-custom" style="width: 18rem;">
+  <div class="card col-3 card-custom border-custom">
         <div class="card-body top-border-custom bg-primary">
           <h5 class="card-title text-white">${fullName}</h5>
-          <p class="card-text text-white">${data.getRole()}</p>
+          <div class="row margin-reset">
+            <i class="fas fa-coffee float-left"></i>
+            <p class="card-text text-white">${data.getRole()}</p>
+          </div>
         </div>
         <div class="container p-3 bottom-border-custom bg-gray-custom">
           <ul class=" bg-white list-group list-group-flush">
@@ -50,10 +53,13 @@ const createEng = (data) => {
   const { gitHub, fullName, id, email } = data;
 
   return `
-  <div class="card card-custom border-custom" style="width: 18rem;">
+  <div class="card col-3 card-custom border-custom">
         <div class="card-body top-border-custom bg-primary">
           <h5 class="card-title text-white">${fullName}</h5>
-          <p class="card-text text-white">${data.getRole()}</p>
+          <div class="row margin-reset">
+            <i class="fas fa-glasses float-left"></i>
+            <p class="card-text text-white">${data.getRole()}</p>
+          </div>
         </div>
         <div class="container p-3 bottom-border-custom bg-gray-custom">
           <ul class=" bg-white list-group list-group-flush">
@@ -70,10 +76,13 @@ const createInt = (data) => {
   const { school , fullName, id, email } = data;
 
   return `
-  <div class="card card-custom border-custom" style="width: 18rem;">
+  <div class="card col-3 card-custom border-custom">
         <div class="card-body top-border-custom bg-primary">
           <h5 class="card-title text-white">${fullName}</h5>
-          <p class="card-text text-white">${data.getRole()}</p>
+          <div class="row margin-reset">
+            <i class="fas fa-user-graduate float-left"></i>
+            <p class="card-text text-white">${data.getRole()}</p>
+          </div>
         </div>
         <div class="container p-3 bottom-border-custom bg-gray-custom">
           <ul class=" bg-white list-group list-group-flush">
@@ -118,10 +127,11 @@ const createHTML = (data) => {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 
-    <title>Document</title>
+    <title>Team Card Builder Node JS</title>
 </head>
 <body>
 
@@ -131,7 +141,9 @@ const createHTML = (data) => {
   </header>
 
   <main class='container p-4'>
-  ${generateCards(data)}
+    <div class="row justify-content-center">
+      ${generateCards(data)}
+    <div>
   </main>
 </body>
 </html>`;
