@@ -8,6 +8,8 @@ const Intern = require('./lib/Intern');
 
 let team = [];
 
+// After the last question it will prompt his question series to then pass
+// Then pass the selected value into the questions() function
 const empType = () => {
   inquirer.prompt([
     {
