@@ -2,35 +2,37 @@
 let team = ``;
 
 const generateCards = (data) => {
-  //Loop over the array of objects passed from data
+    //Loop over the array of objects passed from data
 
-  data.map((emp) => {
-    //Conditional to determine Employee Role
-    // Iterate over the array of objects and append the HTMl to the team string
-    switch (emp.getRole()) {
-      case "Manager":
-        team += createMgmt(emp);
-        break;
-      case "Engineer":
-        team += createEng(emp);
-        break;
-      case "Intern":
-        team += createInt(emp);
-        break;
+    data.map((emp) => {
+        //Conditional to determine Employee Role
+        // Iterate over the array of objects and append the HTMl to the team string
+        switch (emp.getRole()) {
+            case "Manager":
+                team += createMgmt(emp);
+                break;
+            case "Engineer":
+                team += createEng(emp);
+                break;
+            case "Intern":
+                team += createInt(emp);
+                break;
 
-      default:
-        break;
-    }
-  });
-  return team;
+            default:
+                break;
+        }
+    });
+    return team;
 };
 
+
+
 const createMgmt = (data) => {
-  const { number, fullName, id, email } = data;
+    const { number, fullName, id, email } = data;
 
-  let cleanNum = formatNumber(number);
+    let cleanNum = formatNumber(number);
 
-  return `
+    return `
   <div class="card col-3 card-custom border-custom">
         <div class="card-body top-border-custom bg-primary">
           <h5 class="card-title text-white">${fullName}</h5>
@@ -42,7 +44,7 @@ const createMgmt = (data) => {
         <div class="container p-3 bottom-border-custom bg-gray-custom">
           <ul class=" bg-white list-group list-group-flush">
             <li class="list-group-item">ID: ${id}</li>
-            <li class="list-group-item">Email: ${email}</li>
+            <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
             <li class="list-group-item">Number: ${cleanNum}</li>
           </ul>
         </div>
@@ -50,9 +52,9 @@ const createMgmt = (data) => {
 };
 
 const createEng = (data) => {
-  const { gitHub, fullName, id, email } = data;
+    const { gitHub, fullName, id, email } = data;
 
-  return `
+    return `
   <div class="card col-3 card-custom border-custom">
         <div class="card-body top-border-custom bg-primary">
           <h5 class="card-title text-white">${fullName}</h5>
@@ -64,8 +66,8 @@ const createEng = (data) => {
         <div class="container p-3 bottom-border-custom bg-gray-custom">
           <ul class=" bg-white list-group list-group-flush">
             <li class="list-group-item">ID: ${id}</li>
-            <li class="list-group-item">Email: ${email}</li>
-            <li class="list-group-item">GitHub: ${gitHub}</li>
+            <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
+            <li class="list-group-item">GitHub: <a href="https://github.com/${gitHub}" target="_blank">${gitHub}</a></li>
           </ul>
         </div>
       </div>`;
@@ -73,9 +75,9 @@ const createEng = (data) => {
 
 // Create Intern Contact Card
 const createInt = (data) => {
-  const { school , fullName, id, email } = data;
+    const { school, fullName, id, email } = data;
 
-  return `
+    return `
   <div class="card col-3 card-custom border-custom">
         <div class="card-body top-border-custom bg-primary">
           <h5 class="card-title text-white">${fullName}</h5>
@@ -87,7 +89,7 @@ const createInt = (data) => {
         <div class="container p-3 bottom-border-custom bg-gray-custom">
           <ul class=" bg-white list-group list-group-flush">
             <li class="list-group-item">ID: ${id}</li>
-            <li class="list-group-item">Email: ${email}</li>
+            <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
             <li class="list-group-item">School: ${school}</li>
           </ul>
         </div>
@@ -96,41 +98,41 @@ const createInt = (data) => {
 
 const formatNumber = (number) => {
 
-  // RegEx to remove all non-numeric characters
-  // split into an array
-  let numArr = number.replace(/\D/g,'').split('');
-  
-  // Strip first number if it is a 1
-  if(numArr[0] === '1'){
-    numArr.shift();
-  }
+    // RegEx to remove all non-numeric characters
+    // split into an array
+    let numArr = number.replace(/\D/g, '').split('');
 
-  len = numArr.length;
-  
-  // Format numbers to be in the example format
-  if(numArr.length === 10){
-    // Exampe Format if 10 digit number '(555) 555-5555'
-    numArr.splice(0,0,'(');
-    numArr.splice(4,0,') ');
-    numArr.splice(8,0,'-');
-  } else if(numArr.length === 7){
-    // Exampe Format if 7 digit number '555-5555'
-    numArr.splice(3,0,'-');
-  } else {
-    // Else return the original Input as the Number is bad
-    return number;
-  }
+    // Strip first number if it is a 1
+    if (numArr[0] === '1') {
+        numArr.shift();
+    }
 
-  // Convert back to a string
-  clearNum = numArr.join('');
+    len = numArr.length;
 
-  return clearNum;
+    // Format numbers to be in the example format
+    if (numArr.length === 10) {
+        // Exampe Format if 10 digit number '(555) 555-5555'
+        numArr.splice(0, 0, '(');
+        numArr.splice(4, 0, ') ');
+        numArr.splice(8, 0, '-');
+    } else if (numArr.length === 7) {
+        // Exampe Format if 7 digit number '555-5555'
+        numArr.splice(3, 0, '-');
+    } else {
+        // Else return the original Input as the Number is bad
+        return number;
+    }
+
+    // Convert back to a string
+    clearNum = numArr.join('');
+
+    return clearNum;
 }
 
 //Run the createHTML fucntion to generate the Cards
 //Passing the responses from the Inquirer in index.js
 const createHTML = (data) => {
-  return `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
